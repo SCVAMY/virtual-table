@@ -5,7 +5,7 @@
       <button @click="updateDataSource">Update</button>
     </div>
     <div class="list-container">
-      <VitualTable :columns="tableColumn" :data="dataSource" />
+      <VitualTable :columns="tableColumn" :data="dataSource" dataKey="name" />
     </div>
     <div class="list-container">
       <VueVirtualList :data="dataSource">
@@ -32,8 +32,8 @@
     name: "App",
     data() {
       return {
-        dataCount: 10000,
-        dataSource: mock(10000),
+        dataCount: 500,
+        dataSource: mock(500),
         tableColumn: [
           { field: "name", title: "Name" },
           { field: "email", title: "Email" },

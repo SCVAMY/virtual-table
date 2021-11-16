@@ -8,12 +8,12 @@ export default defineComponent({
   name: "VirtualTable",
   props: tableProps,
 
-  setup({ columns, data }) {
+  setup({ columns, data, ...props }) {
     const reactiveData = reactive({ columns, data });
     return () => (
       <div class='virtual-table'>
         <Header columns={reactiveData.columns} />
-        <Body {...{ columns, data }} />
+        <Body {...{ columns, data, ...props }} />
       </div>
     );
   }

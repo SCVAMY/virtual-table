@@ -8,7 +8,7 @@ export default defineComponent({
   props: tableProps,
 
   setup(props) {
-    const { data, columnHeight, dataKey } = toRefs(props);
+    const { data, columnHeight } = toRefs(props);
 
     const scrollHeight = ref((data.value || []).length * columnHeight.value);
     const paddingTop = ref(0);
@@ -34,21 +34,23 @@ export default defineComponent({
       pool.value = getScollPool({ root: root.value, columnHeight: columnHeight.value, data: data.value }) || [];
     });
 
-    return { paddingTop, scrollHeight, pool, root, onScroll, dataKey, columnHeight };
+    return { paddingTop, scrollHeight, pool, root, onScroll, columnHeight };
   },
 
   render() {
-    debugger;
     return (
       <div class='virtual-table__body' onScroll={this.onScroll} ref='root'>
-        <table>
-          <Colgroup columns={this.columns} />
-          <tbody class='virtual-table__scroll' style={`padding-top: ${this.paddingTop}px`}>
-            {this.pool.map((item, index) => {
-              return <Row data={item} columns={this.columns} key={this.dataKey ? item[this.dataKey] : index} style={`height: ${this.columnHeight}px`} />;
-            })}
-          </tbody>
-        </table>
+        <div class='virtual-table__scroll' style={`will-change: transform; transform: translateY(${this.paddingTop}px);`}>
+          <table>
+            <Colgroup columns={this.columns} />
+            <tbody>
+              {this.pool.map((item, index) => {
+                const rowId = this.dataKey ? item[this.dataKey] : index;
+                return <Row data={item} columns={this.columns} key={rowId} style={`height: ${this.columnHeight}px`} {...{ rowId }} />;
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
