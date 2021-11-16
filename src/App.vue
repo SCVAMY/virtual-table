@@ -5,11 +5,13 @@
       <button @click="updateDataSource">Update</button>
     </div>
     <div class="list-container">
+      <VitualTable :columns="tableColumn" :data="dataSource" />
+    </div>
+    <div class="list-container">
       <VueVirtualList :data="dataSource">
         <template v-slot="{ item, index }">
           <div class="item-container">
             <div class="cell cell-index">{{ index + 1 }}</div>
-            <!-- <div class="cell cell-img"><img :src="item.img" /></div> -->
             <div class="cell">{{ item.name }}</div>
             <div class="cell">{{ item.email }}</div>
             <div class="cell">{{ item.address }}</div>
@@ -24,17 +26,24 @@
   import { defineComponent } from "vue";
   import VueVirtualList from "@/virtual-list/VirtualList.tsx";
   import { mock } from "./utils";
+  import VitualTable from "@/virtual-table/VirtualTable.tsx";
 
   export default defineComponent({
     name: "App",
     data() {
       return {
         dataCount: 10000,
-        dataSource: mock(10000)
+        dataSource: mock(10000),
+        tableColumn: [
+          { field: "name", title: "Name" },
+          { field: "email", title: "Email" },
+          { field: "address", title: "Address" }
+        ]
       };
     },
     components: {
-      VueVirtualList
+      VueVirtualList,
+      VitualTable
     },
     methods: {
       updateDataSource() {

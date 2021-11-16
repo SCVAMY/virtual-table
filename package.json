@@ -17,6 +17,7 @@
     "@vue/babel-plugin-jsx": "^1.1.1",
     "faker": "^5.5.3",
     "sass": "^1.43.4",
+    "tsconfig-paths": "^3.11.0",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
     "vue-tsc": "^0.3.0"

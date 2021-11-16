@@ -73,7 +73,6 @@ export default defineComponent({
       pool.value = data.value.slice(range[0], range[0] + range[1]).map((v: any, i) => ({ ...v, _index: range[0] + i }));
     });
 
-    debugger;
     return { dataKey, pool, scrollHeight, handleScroll, paddingTop, root };
   },
 

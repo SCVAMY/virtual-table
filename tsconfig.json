@@ -13,6 +13,9 @@
     "noImplicitReturns": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
+    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
+    "paths": {
+      "@": ["./src/*"]
+    }
   }
 }

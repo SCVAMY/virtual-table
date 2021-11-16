@@ -15,5 +15,5 @@ export default defineConfig({
   },
   css: {
     requireModuleExtension: false
-  }
+  },
 });

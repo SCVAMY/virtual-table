@@ -18,11 +18,9 @@ export function uuid() {
 export function mock(length = 1000) {
   return Array.from({ length }, () => {
     return {
-      id: uuid(),
       name: faker.name.findName(),
       email: faker.internet.email(),
       address: faker.address.country(),
-      img: faker.image.imageUrl()
     };
   });
 }

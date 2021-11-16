@@ -1,0 +1,30 @@
+.virtual-table {
+  height: 100%;
+  width: 100%;
+
+  &__header {
+    width: 100%;
+    background-color: #f8f8f9;
+  }
+
+  &__cell {
+    padding: 10px 0;
+  }
+
+  &__body {
+    height: calc(100% - 42px);
+    width: 100%;
+    overflow: auto;
+  }
+
+  &__scroll {
+    width: 100%;
+  }
+
+  &__row {
+    overflow: hidden;
+    td {
+      height: 100%;
+    }
+  }
+}
