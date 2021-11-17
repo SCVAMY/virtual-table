@@ -1,0 +1,14 @@
+@mixin single-line-hide-text($width: auto) {
+  max-width: $width;
+  width: $width;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@mixin textEllipsis() {
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+}
