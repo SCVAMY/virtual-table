@@ -4,6 +4,7 @@ export namespace ColumnPropTypes {
   export type Width = number | string;
   export type MinWidth = number | string;
   export type Align = "left" | "center" | "right" | null;
+  export type Render = (data: any) => any;
 
   export type Columns = ColumnProps[];
 }
@@ -29,4 +30,8 @@ export type ColumnProps = {
    * 列对其方式
    */
   align?: ColumnPropTypes.Align;
+  /**
+   * 列对其方式
+   */
+  render?: ColumnPropTypes.Render;
 };

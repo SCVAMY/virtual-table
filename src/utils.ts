@@ -21,3 +21,8 @@ export function mock(length = 1000) {
     };
   });
 }
+
+export function isNumber(value: string | number) {
+  const reg = /^[-]{0,1}[0-9]+([.]{1}[0-9]+){0,1}$/;
+  return reg.test((value || "").toString());
+}

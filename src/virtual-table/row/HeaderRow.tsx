@@ -12,9 +12,10 @@ export const header = (columns: ColumnProps[]) => {
     <thead>
       <tr>
         {columns.map(i => {
+          const { align } = i;
           return (
             <th class='virtual-table__header__coloumn'>
-              <Cell>{i.title}</Cell>
+              <Cell {...{ align }}>{i.title}</Cell>
             </th>
           );
         })}
@@ -31,7 +32,7 @@ export default defineComponent({
     const Header = header(columns.value);
 
     return () => (
-      <table class='virtual-table__header'>
+      <table class='virtual-table__header' style='table-layout: fixed;'>
         <Colgroup columns={columns.value} />
         {Header}
       </table>

@@ -1,4 +1,4 @@
-import { toRefs, defineComponent, PropType } from "vue";
+import { toRefs, defineComponent, PropType, ref } from "vue";
 import { ColumnPropTypes } from "../../types/all";
 import { isNumber } from "../../utils/type";
 
@@ -11,8 +11,16 @@ export const ColumnsProps = {
   }
 };
 
-const getWidth = (width: number | string | undefined) => {
-  return isNumber(width) || isNumber(+(width || "")) ? width + "px" : width;
+const calcColWidth = (columns: ColumnPropTypes.Columns) => {
+  const colWidth = columns.reduce((result: number, i) => {
+    const { width } = i;
+    width && (result += +width);
+    return result;
+  }, 0);
+
+  const calcWidthLength = columns.length - columns.filter(i => i.width).length;
+
+  return `calc(${100 / calcWidthLength}% - ${colWidth}px)`;
 };
 
 export default defineComponent({
@@ -20,14 +28,25 @@ export default defineComponent({
 
   setup(props) {
     const { columns } = toRefs(props);
+    const colWidth = ref<string>("");
+
+    colWidth.value = calcColWidth(columns.value);
+
+    const getWidth = (width: number | string | undefined) => {
+      if (!width) {
+        return colWidth.value;
+      }
+
+      return isNumber(width) || isNumber(+(width || "")) ? width + "px" : width;
+    };
 
     return () => (
       <colgroup>
         {columns.value.map((item, index) => {
-          const { width, minWidth } = item;
+          const { width, minWidth, field } = item;
           const key = `col_${index}`;
 
-          return <col key={key} id={key} style={{ width: getWidth(width), minWidth: getWidth(minWidth) }}></col>;
+          return <col key={key} style={{ width: getWidth(width), minWidth: getWidth(minWidth) }} {...{ "data-prop": field }}></col>;
         })}
       </colgroup>
     );

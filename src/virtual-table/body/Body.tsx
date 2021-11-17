@@ -41,7 +41,7 @@ export default defineComponent({
     return (
       <div class='virtual-table__body' onScroll={this.onScroll} ref='root'>
         <div class='virtual-table__scroll' style={`will-change: transform; transform: translateY(${this.paddingTop}px);`}>
-          <table>
+          <table style='table-layout: fixed;'>
             <Colgroup columns={this.columns} />
             <tbody>
               {this.pool.map((item, index) => {

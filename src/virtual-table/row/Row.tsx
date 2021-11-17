@@ -10,9 +10,11 @@ export const RowProps = {
 
 const getCloumns = (data: any, columns?: ColumnPropTypes.Columns) => {
   return (columns || []).map(column => {
+    const { align, render } = column;
+
     return (
       <td>
-        <Cell>{column.field ? data[column.field] : ""}</Cell>
+        <Cell {...{ align }}>{(render && render(data)) || (column.field ? data[column.field] : "")}</Cell>
       </td>
     );
   });

@@ -10,5 +10,7 @@ export default {
     }
   },
   columnHeight: { type: Number as PropType<number>, default: 40 },
-  dataKey: String as PropType<string>
+  dataKey: String as PropType<string>,
+  height: { type: String as PropType<string>, default: "" },
+  border: { type: Boolean as PropType<boolean>, default: false }
 };

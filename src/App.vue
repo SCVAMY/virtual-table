@@ -4,10 +4,10 @@
       <input v-model="dataCount" />
       <button @click="updateDataSource">Update</button>
     </div>
-    <div class="list-container">
-      <VitualTable :columns="tableColumn" :data="dataSource" dataKey="name" />
+    <div style="width: 100%; display: flex; justify-content: center">
+      <VitualTable :columns="tableColumn" :data="dataSource" dataKey="name" height="500px" style="width: 80%" />
     </div>
-    <div class="list-container">
+    <!-- <div class="list-container">
       <VueVirtualList :data="dataSource">
         <template v-slot="{ item, index }">
           <div class="item-container">
@@ -18,7 +18,7 @@
           </div>
         </template>
       </VueVirtualList>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -27,6 +27,7 @@
   import VueVirtualList from "@/virtual-list/VirtualList.tsx";
   import { mock } from "./utils";
   import VitualTable from "@/virtual-table/VirtualTable.tsx";
+  import columns from "./colums";
 
   export default defineComponent({
     name: "App",
@@ -34,11 +35,7 @@
       return {
         dataCount: 500,
         dataSource: mock(500),
-        tableColumn: [
-          { field: "name", title: "Name" },
-          { field: "email", title: "Email" },
-          { field: "address", title: "Address" }
-        ]
+        tableColumn: [...columns]
       };
     },
     components: {
