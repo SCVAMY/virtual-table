@@ -1,10 +1,15 @@
+interface columnRenderProps {
+  row: any;
+  column: ColumnProps;
+}
 export namespace ColumnPropTypes {
   export type Field = string;
   export type Title = string;
   export type Width = number | string;
   export type MinWidth = number | string;
   export type Align = "left" | "center" | "right" | null;
-  export type Render = (data: any) => any;
+
+  export type Render = ({ row, column }: columnRenderProps) => any;
 
   export type Columns = ColumnProps[];
 }

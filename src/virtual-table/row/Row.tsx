@@ -14,7 +14,7 @@ const getCloumns = (data: any, columns?: ColumnPropTypes.Columns) => {
 
     return (
       <td>
-        <Cell {...{ align }}>{(render && render(data)) || (column.field ? data[column.field] : "")}</Cell>
+        <Cell {...{ align }}>{(render && render({ row: data, column })) || (column.field ? data[column.field] : "")}</Cell>
       </td>
     );
   });

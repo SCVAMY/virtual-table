@@ -5,7 +5,13 @@
       <button @click="updateDataSource">Update</button>
     </div>
     <div style="width: 100%; display: flex; justify-content: center">
-      <VitualTable :columns="tableColumn" :data="dataSource" dataKey="name" height="500px" style="width: 80%" />
+      <VitualTable :data="dataSource" dataKey="name" height="500px" style="width: 80%">
+        <TableColumn field="name" title="Name" v-slot="{ row }">
+          <div>{{ row.name }}</div>
+        </TableColumn>
+        <TableColumn field="email" title="Email"> </TableColumn>
+        <TableColumn field="address" title="Address"> </TableColumn>
+      </VitualTable>
     </div>
     <!-- <div class="list-container">
       <VueVirtualList :data="dataSource">
@@ -28,6 +34,7 @@
   import { mock } from "./utils";
   import VitualTable from "@/virtual-table/VirtualTable.tsx";
   import columns from "./colums";
+  import TableColumn from "./virtual-table/TableCloumn.tsx";
 
   export default defineComponent({
     name: "App",
@@ -40,7 +47,8 @@
     },
     components: {
       VueVirtualList,
-      VitualTable
+      VitualTable,
+      TableColumn
     },
     methods: {
       updateDataSource() {

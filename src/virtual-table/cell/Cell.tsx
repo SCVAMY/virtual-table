@@ -19,7 +19,7 @@ export default defineComponent({
   setup({ align }, { slots }) {
     return () => (
       <div class='virtual-table__cell' style={`text-align: ${align}`}>
-        <span>{slots.default && slots.default()}</span>
+        {slots.default && slots.default()}
       </div>
     );
   }
