@@ -1,28 +1,45 @@
-import { defineComponent, reactive, ref } from "vue";
-import tableProps from "./props";
-import Header from "./row/HeaderRow";
-import "../style/main.scss";
-import Body from "./body/Body.tsx";
-import { isNumber } from "../utils";
-import { generateColumns } from "./table-column";
+import { defineComponent, ref, toRefs, watchEffect } from 'vue'
+import tableProps from './props'
+import Header from './row/HeaderRow'
+import '@/style/main.scss'
+import Body from './body/Body.tsx'
+import { isNumber } from '@/utils'
+import { generateColumns } from './table-column'
+import { ColumnPropTypes } from '@/types/all'
 
 export default defineComponent({
-  name: "VirtualTable",
+  name: 'VirtualTable',
   props: tableProps,
 
-  setup({ columns, data, height, border, ...props }, { slots }) {
-    const reactiveData = reactive({ columns, data, height, border });
-    const tableHeight = height ? (isNumber(height) ? `height: ${height}px` : `height: ${height}`) : "";
+  setup(props, { slots }) {
+    const { columns, height } = toRefs(props)
+    const tableHeight = ref<string>('')
+    const tableColumns = ref<ColumnPropTypes.Columns>([])
 
-    if (!columns) {
-      reactiveData.columns = generateColumns(slots.default && slots.default());
-    }
+    watchEffect(() => {
+      tableHeight.value = height.value
+        ? isNumber(height.value)
+          ? `height: ${height.value}px`
+          : `height: ${height.value}`
+        : ''
+    })
 
-    return () => (
-      <div class={["virtual-table", border && "virtual-table--border"]} style={tableHeight}>
-        <Header columns={reactiveData.columns} />
-        <Body {...{ ...reactiveData, ...props }} />
+    watchEffect(() => {
+      tableColumns.value = columns.value || generateColumns(slots.default && slots.default())
+    })
+
+    return { tableColumns, tableHeight }
+  },
+
+  render() {
+    return (
+      <div
+        class={['virtual-table', this.border && 'virtual-table--border']}
+        style={this.tableHeight}
+      >
+        <Header columns={this.tableColumns} />
+        <Body {...{ ...this.$props, columns: this.tableColumns }} />
       </div>
-    );
+    )
   }
-});
+})
