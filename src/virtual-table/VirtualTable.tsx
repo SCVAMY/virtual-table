@@ -21,7 +21,7 @@ export default defineComponent({
     return () => (
       <div class={["virtual-table", border && "virtual-table--border"]} style={tableHeight}>
         <Header columns={reactiveData.columns} />
-        <Body {...{ columns: reactiveData.columns, data, ...props }} />
+        <Body {...{ ...reactiveData, ...props }} />
       </div>
     );
   }

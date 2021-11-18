@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, ref } from "vue";
   import VueVirtualList from "@/virtual-list/VirtualList.tsx";
   import { mock } from "./utils";
   import VitualTable from "@/virtual-table/VirtualTable.tsx";
@@ -40,10 +40,14 @@
     name: "App",
     data() {
       return {
-        dataCount: 500,
-        dataSource: mock(500),
         tableColumn: [...columns]
       };
+    },
+    setup() {
+      const dataSource = ref(mock(500));
+      const dataCount = ref(500);
+
+      return { dataSource, dataCount };
     },
     components: {
       VueVirtualList,
