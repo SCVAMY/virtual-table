@@ -1,0 +1,10 @@
+.node-icon {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #ccc;
+  content: ' ';
+  display: block;
+  width: 0;
+  height: 0;
+  transform: rotate(-90deg);
+}

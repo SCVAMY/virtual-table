@@ -1,8 +1,9 @@
-import { defineComponent, toRefs, ref, watchEffect } from 'vue'
+import { defineComponent, toRefs, ref, watchEffect, readonly, watch } from 'vue'
 import Colgroup from '../colgroup/Colgroup.tsx'
 import tableProps from '../props'
 import Row from '../row/Row'
 import { handleScroll, getScollPool } from '../scroll'
+import { insertArray, sliceArray } from '@/utils'
 
 export default defineComponent({
   name: 'TableBody',
@@ -16,23 +17,37 @@ export default defineComponent({
     const pool = ref<any[]>([])
     const root = ref<HTMLElement | undefined>(undefined)
     const scrollHeight = ref(0)
+    const tableData = ref<any>(data.value)
+
+    watch(data, (newVal) => {
+      tableData.value = readonly(newVal)
+    })
 
     watchEffect(() => {
-      scrollHeight.value = (data.value || []).length * columnHeight.value
+      scrollHeight.value = (tableData.value || []).length * columnHeight.value
     })
 
     const onScroll = () => {
-      handleScroll({ root: root.value, columnHeight: columnHeight.value, data: data.value }, (result: any) => {
+      handleScroll({ root: root.value, columnHeight: columnHeight.value, data: tableData.value }, (result: any) => {
         pool.value = (result || {}).pool || []
         paddingTop.value = (result || {}).paddingTop || 0
       })
     }
 
     watchEffect(() => {
-      pool.value = getScollPool({ root: root.value, columnHeight: columnHeight.value, data: data.value }) || []
+      pool.value = getScollPool({ root: root.value, columnHeight: columnHeight.value, data: tableData.value }) || []
     })
 
-    return { paddingTop, scrollHeight, pool, root, onScroll }
+    const handleTreeNodeClick = ({ row, index, expand }: any) => {
+      if (expand) {
+        tableData.value = insertArray(tableData.value, index, row.children)
+      } else {
+        tableData.value = sliceArray(tableData.value, index, row.children.length)
+      }
+      tableData.value[index].expand = expand
+    }
+
+    return { paddingTop, scrollHeight, pool, root, onScroll, handleTreeNodeClick }
   },
 
   render() {
@@ -44,7 +59,16 @@ export default defineComponent({
             <tbody>
               {this.pool.map((item, index) => {
                 const rowId = this.dataKey ? item[this.dataKey] : index
-                return <Row data={item} columns={this.columns} key={rowId} style={`height: ${this.columnHeight}px`} {...{ rowId }} />
+                return (
+                  <Row
+                    data={item}
+                    columns={this.columns}
+                    key={rowId}
+                    style={`height: ${this.columnHeight}px`}
+                    {...{ rowId }}
+                    onTreeNodeClick={(params) => this.handleTreeNodeClick({ ...params, index })}
+                  />
+                )
               })}
             </tbody>
           </table>

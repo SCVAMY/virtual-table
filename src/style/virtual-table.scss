@@ -1,6 +1,6 @@
-@import "./theme.scss";
-@import "./mixins/mixins.scss";
-@import "./mixins/utils.scss";
+@import './theme.scss';
+@import './mixins/mixins.scss';
+@import './mixins/utils.scss';
 
 @include b(virtual-table) {
   height: 100%;
@@ -53,6 +53,18 @@
       height: 100%;
       width: 100%;
       overflow-wrap: break-word;
+    }
+  }
+
+  @include e(tree-node) {
+    display: flex;
+    align-items: center;
+    .node-icon {
+      transition: transform 0.1s ease-in-out;
+      margin-right: 10px;
+      &.rotate90 {
+        transform: rotate(0deg);
+      }
     }
   }
 }

@@ -49,7 +49,7 @@
       const height = ref('500px')
       const align = ref('left')
       const showEmail = ref(true)
-      const columnHeight = ref(100)
+      const columnHeight = ref(40)
 
       return { dataSource, dataCount, height, align, showEmail, columnHeight }
     },

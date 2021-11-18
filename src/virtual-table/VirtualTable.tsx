@@ -1,7 +1,7 @@
 import { defineComponent, ref, toRefs, watchEffect } from 'vue'
 import tableProps from './props'
 import Header from './row/HeaderRow'
-import '@/style/main.scss'
+import '@/style/virtual-table.scss'
 import Body from './body/Body.tsx'
 import { isNumber } from '@/utils'
 import { generateColumns } from './table-column'
