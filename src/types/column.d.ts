@@ -1,42 +1,42 @@
 interface columnRenderProps {
-  row: any;
-  column: ColumnProps;
+  row: any
+  column: ColumnProps
 }
 export namespace ColumnPropTypes {
-  export type Field = string;
-  export type Title = string;
-  export type Width = number | string;
-  export type MinWidth = number | string;
-  export type Align = "left" | "center" | "right" | null;
+  export type Field = string
+  export type Title = string
+  export type Width = number | string
+  export type MinWidth = number | string
+  export type Align = 'left' | 'center' | 'right' | null
 
-  export type Render = ({ row, column }: columnRenderProps) => any;
+  export type Render = ({ row, column }: columnRenderProps) => any
 
-  export type Columns = ColumnProps[];
+  export type Columns = ColumnProps[]
 }
 
 export type ColumnProps = {
   /**
    * 列字段名
    */
-  field?: ColumnPropTypes.Field;
+  field?: ColumnPropTypes.Field
   /**
    * 列标题
    */
-  title?: ColumnPropTypes.Title;
+  title?: ColumnPropTypes.Title
   /**
    * 列宽度
    */
-  width?: ColumnPropTypes.Width;
+  width?: ColumnPropTypes.Width
   /**
    * 列最小宽度，把剩余宽度按比例分配
    */
-  minWidth?: ColumnPropTypes.MinWidth;
+  minWidth?: ColumnPropTypes.MinWidth
   /**
    * 列对其方式
    */
-  align?: ColumnPropTypes.Align;
+  align?: ColumnPropTypes.Align
   /**
    * 列对其方式
    */
-  render?: ColumnPropTypes.Render;
-};
+  render?: ColumnPropTypes.Render
+}

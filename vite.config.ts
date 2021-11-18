@@ -1,19 +1,14 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import vueJsx from "@vitejs/plugin-vue-jsx";
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
-import path from "path";
-
-const pathResolve = (pathStr: string) => {
-  return path.resolve(__dirname, pathStr);
-};
+import { resolve } from 'path' // 此处如果报错则安装 node/path依赖
 
 export default defineConfig({
   plugins: [vue(), vueJsx()],
-  alias: {
-    "@": pathResolve("./src")
-  },
-  css: {
-    requireModuleExtension: false
-  },
-});
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, '/src')
+    }
+  }
+})

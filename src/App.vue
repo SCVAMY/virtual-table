@@ -5,12 +5,12 @@
       <button @click="updateDataSource">Update</button>
     </div>
     <div style="width: 100%; display: flex; justify-content: center">
-      <VitualTable :data="dataSource" dataKey="name" height="500px" style="width: 80%">
-        <TableColumn field="name" title="Name" v-slot="{ row }">
+      <VitualTable :data="dataSource" dataKey="name" :height="height" style="width: 80%" :columnHeight="columnHeight">
+        <TableColumn field="name" title="Name" v-slot="{ row }" :align="align">
           <div>{{ row.name }}</div>
         </TableColumn>
-        <TableColumn field="email" title="Email"> </TableColumn>
-        <TableColumn field="address" title="Address"> </TableColumn>
+        <TableColumn v-if="showEmail" field="email" title="Email" :align="align"> </TableColumn>
+        <TableColumn field="address" title="Address" :align="align"> </TableColumn>
       </VitualTable>
     </div>
     <!-- <div class="list-container">
@@ -29,25 +29,29 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from "vue";
-  import VueVirtualList from "@/virtual-list/VirtualList.tsx";
-  import { mock } from "./utils";
-  import VitualTable from "@/virtual-table/VirtualTable.tsx";
-  import columns from "./colums";
-  import TableColumn from "./virtual-table/TableCloumn.tsx";
+  import { defineComponent, ref } from 'vue'
+  import VueVirtualList from '@/virtual-list/VirtualList.tsx'
+  import { mock } from './utils'
+  import VitualTable from '@/virtual-table/VirtualTable.tsx'
+  import columns from './colums'
+  import TableColumn from './virtual-table/TableCloumn.tsx'
 
   export default defineComponent({
-    name: "App",
+    name: 'App',
     data() {
       return {
         tableColumn: [...columns]
-      };
+      }
     },
     setup() {
-      const dataSource = ref(mock(500));
-      const dataCount = ref(500);
+      const dataSource = ref(mock(500))
+      const dataCount = ref(500)
+      const height = ref('500px')
+      const align = ref('left')
+      const showEmail = ref(true)
+      const columnHeight = ref(100)
 
-      return { dataSource, dataCount };
+      return { dataSource, dataCount, height, align, showEmail, columnHeight }
     },
     components: {
       VueVirtualList,
@@ -56,10 +60,13 @@
     },
     methods: {
       updateDataSource() {
-        this.dataSource = mock(this.dataCount);
+        this.dataSource = mock(this.dataCount)
+        this.align = 'right'
+        this.showEmail = false
+        this.columnHeight = 40
       }
     }
-  });
+  })
 </script>
 
 <style lang="scss">

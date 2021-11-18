@@ -14,8 +14,9 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
+    "baseUrl": "src",
     "paths": {
-      "@": ["./src/*"]
+      "@/*": ["*"]
     }
   }
 }
