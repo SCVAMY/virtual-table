@@ -67,7 +67,7 @@ export default defineComponent({
 
   methods: {
     toggleRowExpand() {
-      const { expand } = this.$props.data || ({} as any)
+      const { expand } = this.data || ({} as any)
       this.$emit('treeNodeClick', { row: this.data, expand: !expand })
     }
   }

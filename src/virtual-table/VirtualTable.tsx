@@ -17,11 +17,7 @@ export default defineComponent({
     const tableColumns = ref<ColumnPropTypes.Columns>([])
 
     watchEffect(() => {
-      tableHeight.value = height.value
-        ? isNumber(height.value)
-          ? `height: ${height.value}px`
-          : `height: ${height.value}`
-        : ''
+      tableHeight.value = height.value ? (isNumber(height.value) ? `height: ${height.value}px` : `height: ${height.value}`) : ''
     })
 
     watchEffect(() => {
@@ -32,12 +28,11 @@ export default defineComponent({
   },
 
   render() {
+    const header = this.$slots.header
+
     return (
-      <div
-        class={['virtual-table', this.border && 'virtual-table--border']}
-        style={this.tableHeight}
-      >
-        <Header columns={this.tableColumns} />
+      <div class={['virtual-table', this.border && 'virtual-table--border']} style={this.tableHeight}>
+        <Header headerSlot={header} headerColumns={this.headerColumns} columns={this.tableColumns} />
         <Body {...{ ...this.$props, columns: this.tableColumns }} />
       </div>
     )

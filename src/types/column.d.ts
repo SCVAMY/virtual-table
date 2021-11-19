@@ -9,7 +9,7 @@ export namespace ColumnPropTypes {
   export type MinWidth = number | string
   export type Align = 'left' | 'center' | 'right' | null
 
-  export type Render = ({ row, column }: columnRenderProps) => any
+  export type Render = ({ row, column }?: columnRenderProps) => any
 
   export type Columns = ColumnProps[]
 }

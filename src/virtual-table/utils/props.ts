@@ -3,6 +3,7 @@ import { ColumnPropTypes } from '@/types/all'
 
 export default {
   columns: Array as PropType<ColumnPropTypes.Columns>,
+  headerColumns: Array as PropType<ColumnPropTypes.Columns>,
   data: {
     type: Array as PropType<any[]>,
     default() {

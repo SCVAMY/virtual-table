@@ -1,10 +1,13 @@
-import { defineComponent, toRefs, ref } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import Colgroup, { ColumnsProps } from '../colgroup/Colgroup'
 import Cell from '../cell/Cell'
-import { ColumnProps } from '../../types/all'
+import { ColumnProps, ColumnPropTypes } from '../../types/all'
+import { generateColumns } from '../utils/column'
 
 export const HeaderProps = {
-  ...ColumnsProps
+  ...ColumnsProps,
+  headerColumns: Array as PropType<ColumnPropTypes.Columns>,
+  headerSlot: Function as PropType<() => any>
 }
 
 export const header = (columns: ColumnProps[]) => {
@@ -12,10 +15,11 @@ export const header = (columns: ColumnProps[]) => {
     <thead>
       <tr>
         {columns.map((i) => {
-          const { align } = i
+          const { align, render } = i
+          const cellRender = (render && render()) || i.title
           return (
             <th class="virtual-table__header__coloumn">
-              <Cell {...{ align }}>{i.title}</Cell>
+              <Cell {...{ align }}>{cellRender}</Cell>
             </th>
           )
         })}
@@ -30,12 +34,28 @@ export default defineComponent({
   props: HeaderProps,
 
   render() {
-    const Header = header(this.columns)
+    const columns = this.getHeaderColumns()
+
+    const Header = header(columns)
     return (
       <table class="virtual-table__header" style="table-layout: fixed;">
-        <Colgroup columns={this.columns} />
+        <Colgroup columns={columns} />
         {Header}
       </table>
     )
+  },
+
+  methods: {
+    getHeaderColumns() {
+      if (this.headerColumns) {
+        return this.headerColumns
+      }
+
+      if (this.headerSlot) {
+        return generateColumns(this.headerSlot())
+      }
+
+      return this.columns
+    }
   }
 })
