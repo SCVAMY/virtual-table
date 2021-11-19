@@ -4,6 +4,7 @@ import tableProps from '../props'
 import Row from '../row/Row'
 import { handleScroll, getScollPool } from '../scroll'
 import { insertArray, sliceArray } from '@/utils'
+import { flattenData } from '../expand'
 
 export default defineComponent({
   name: 'TableBody',
@@ -17,10 +18,10 @@ export default defineComponent({
     const pool = ref<any[]>([])
     const root = ref<HTMLElement | undefined>(undefined)
     const scrollHeight = ref(0)
-    const tableData = ref<any>(data.value)
+    const tableData = ref<any>(flattenData(data.value))
 
     watch(data, (newVal) => {
-      tableData.value = readonly(newVal)
+      tableData.value = flattenData(newVal)
     })
 
     watchEffect(() => {

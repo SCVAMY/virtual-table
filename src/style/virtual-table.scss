@@ -44,6 +44,7 @@
 
     table {
       width: 100%;
+      border-collapse: collapse
     }
   }
 
@@ -54,6 +55,9 @@
       width: 100%;
       overflow-wrap: break-word;
     }
+    &:hover {
+        background-color: $hilight-color;
+    }
   }
 
   @include e(tree-node) {
@@ -61,7 +65,7 @@
     align-items: center;
     .node-icon {
       transition: transform 0.1s ease-in-out;
-      margin-right: 10px;
+      margin-right: 6px;
       &.rotate90 {
         transform: rotate(0deg);
       }

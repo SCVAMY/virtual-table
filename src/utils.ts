@@ -23,7 +23,15 @@ export function mock(length = 1000) {
           ? Array.from({ length: 10 }, (v, index) => ({
               name: `children-${i}-${index}`,
               email: faker.internet.email(),
-              address: faker.address.country()
+              address: faker.address.country(),
+              children:
+                index % 2 === 0
+                  ? Array.from({ length: 10 }, (v, j) => ({
+                      name: `children-${i}-${index}-${j}`,
+                      email: faker.internet.email(),
+                      address: faker.address.country()
+                    }))
+                  : null
             }))
           : null
     }

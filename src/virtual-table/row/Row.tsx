@@ -15,20 +15,24 @@ const getCloumns = (data: any, columns?: ColumnPropTypes.Columns, emit?: any) =>
 
     const cellRender = (render && render({ row: data, column })) || (column.field ? data[column.field] : '')
 
-    const { children, expand } = data
+    const { children, expand, _depth } = data
+
+    const paddingLeft = `${+_depth * 20}px`
     const showChildren = children && children.length > 0
 
     return (
       <td>
         <Cell {...{ align }}>
-          {index === 0 && showChildren ? (
-            <div class="virtual-table__tree-node">
-              <NodeIcon
-                class={expand ? 'rotate90' : ''}
-                onClick={() => {
-                  emit('treeNodeClick', { row: data, expand: !expand })
-                }}
-              />
+          {index === 0 ? (
+            <div class="virtual-table__tree-node" style={`padding-left: ${paddingLeft}`}>
+              {showChildren && (
+                <NodeIcon
+                  class={expand ? 'rotate90' : ''}
+                  onClick={() => {
+                    emit('treeNodeClick', { row: data, expand: !expand })
+                  }}
+                />
+              )}
               {cellRender}
             </div>
           ) : (
@@ -45,11 +49,19 @@ export default defineComponent({
 
   props: RowProps,
 
-  emits: ['treeNodeClick'],
+  emits: ['treeNodeClick', 'rowClick'],
 
   setup(props, { emit }) {
     const { columns, data } = toRefs(props)
 
-    return () => <tr class="virtual-table__row">{getCloumns(data.value, columns.value, emit)}</tr>
+    const handleRowClick = () => {
+      emit('rowClick', { row: data, columns })
+    }
+
+    return () => (
+      <tr class="virtual-table__row" onClick={handleRowClick}>
+        {getCloumns(data.value, columns.value, emit)}
+      </tr>
+    )
   }
 })
