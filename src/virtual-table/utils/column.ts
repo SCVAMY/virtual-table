@@ -1,4 +1,4 @@
-import { ColumnPropTypes } from '../types/all'
+import { ColumnPropTypes } from '@/types/all'
 
 export const generateColumns = (columns: any = []): ColumnPropTypes.Columns => {
   const columnProps = columns.reduce((result: ColumnPropTypes.Columns, i: any) => {

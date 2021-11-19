@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/colums.tsx"],
+  "include": ["exampe/*.ts", "exampe/*.tsx", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/example/colums.tsx"],
   "compilerOptions": {
     "jsx": "preserve",
     "target": "esnext",

@@ -34,7 +34,7 @@
   import { mock } from './utils'
   import VitualTable from '@/virtual-table/VirtualTable.tsx'
   import columns from './colums'
-  import TableColumn from './virtual-table/TableCloumn.tsx'
+  import TableColumn from './colums.tsx'
 
   export default defineComponent({
     name: 'App',

@@ -1,10 +1,10 @@
-import { defineComponent, toRefs, ref, watchEffect, readonly, watch } from 'vue'
+import { defineComponent, toRefs, ref, watchEffect, watch } from 'vue'
 import Colgroup from '../colgroup/Colgroup.tsx'
-import tableProps from '../props'
+import tableProps from '../utils/props'
 import Row from '../row/Row'
-import { handleScroll, getScollPool } from '../scroll'
+import { handleScroll, getScollPool } from '../utils/scroll'
 import { insertArray, sliceArray } from '@/utils'
-import { flattenData } from '../expand'
+import { flattenData } from '../utils/expand'
 
 export default defineComponent({
   name: 'TableBody',

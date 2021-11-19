@@ -1,10 +1,10 @@
 import { defineComponent, ref, toRefs, watchEffect } from 'vue'
-import tableProps from './props'
+import tableProps from './utils/props'
 import Header from './row/HeaderRow'
 import '@/style/virtual-table.scss'
 import Body from './body/Body.tsx'
 import { isNumber } from '@/utils'
-import { generateColumns } from './table-column'
+import { generateColumns } from './utils/column'
 import { ColumnPropTypes } from '@/types/all'
 
 export default defineComponent({

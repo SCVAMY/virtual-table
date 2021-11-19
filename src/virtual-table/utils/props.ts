@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { ColumnPropTypes } from '../types/all'
+import { ColumnPropTypes } from '@/types/all'
 
 export default {
   columns: Array as PropType<ColumnPropTypes.Columns>,
