@@ -55,7 +55,7 @@ export default defineComponent({
     const { columns, data } = toRefs(props)
 
     const handleRowClick = () => {
-      emit('rowClick', { row: data, columns })
+      emit('rowClick', { row: data.value, columns: columns.value })
     }
 
     return () => (
@@ -63,5 +63,12 @@ export default defineComponent({
         {getCloumns(data.value, columns.value, emit)}
       </tr>
     )
+  },
+
+  methods: {
+    toggleRowExpand() {
+      const { expand } = this.$props.data || ({} as any)
+      this.$emit('treeNodeClick', { row: this.data, expand: !expand })
+    }
   }
 })

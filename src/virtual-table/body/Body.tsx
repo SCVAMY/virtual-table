@@ -19,6 +19,7 @@ export default defineComponent({
     const root = ref<HTMLElement | undefined>(undefined)
     const scrollHeight = ref(0)
     const tableData = ref<any>(flattenData(data.value))
+    const scrollBusy = ref<Boolean>(false)
 
     watch(data, (newVal) => {
       tableData.value = flattenData(newVal)
@@ -29,7 +30,13 @@ export default defineComponent({
     })
 
     const onScroll = () => {
+      if (scrollBusy.value) {
+        return
+      }
+
+      scrollBusy.value = true
       handleScroll({ root: root.value, columnHeight: columnHeight.value, data: tableData.value }, (result: any) => {
+        scrollBusy.value = false
         pool.value = (result || {}).pool || []
         paddingTop.value = (result || {}).paddingTop || 0
       })
