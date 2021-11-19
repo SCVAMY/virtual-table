@@ -6,11 +6,11 @@ initializing ...
 
 ### 1 show-overflow-tooltip
 
-### 2 table tree(多级嵌套，缩进 实现方式)
+### ~~2 table tree(多级嵌套，缩进 实现方式)~~
 
-### 3 滚动过快白屏问题
+### ~~3 滚动过快白屏问题~~ 
 
-### 4 懒加载数
+### 4 懒加载树
 
 ### 5 multyHeader
 
@@ -18,4 +18,4 @@ initializing ...
 
 ### 7 footer
 
-### 8 重构目录结构
+### ~~8 重构目录结构~~
