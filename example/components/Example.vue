@@ -30,9 +30,9 @@
 
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
-  import VueVirtualList from '@/virtual-list/VirtualList.tsx'
-  import { mock } from './utils'
-  import VitualTable from '@/virtual-table/VirtualTable.tsx'
+  import VueVirtualList from '@/components/virtual-list/VirtualList.tsx'
+  import { mock } from '../utils'
+  import VitualTable from '@/components/virtual-table/VirtualTable.tsx'
   import columns from './colums'
   import TableColumn from './colums.tsx'
 

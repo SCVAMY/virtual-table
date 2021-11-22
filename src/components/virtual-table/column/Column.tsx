@@ -1,5 +1,5 @@
 import { defineComponent, toRefs, PropType } from 'vue'
-import { ColumnPropTypes } from '../../types/all'
+import { ColumnPropTypes } from '../../../types/all'
 
 export const columnProps = {
   field: String as PropType<ColumnPropTypes.Field>,

@@ -44,7 +44,7 @@
 
     table {
       width: 100%;
-      border-collapse: collapse
+      border-collapse: collapse;
     }
   }
 
@@ -56,7 +56,7 @@
       overflow-wrap: break-word;
     }
     &:hover {
-        background-color: $hilight-color;
+      background-color: $highlight-color;
     }
   }
 

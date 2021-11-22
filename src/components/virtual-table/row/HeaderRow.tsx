@@ -1,7 +1,7 @@
 import { defineComponent, PropType } from 'vue'
 import Colgroup, { ColumnsProps } from '../colgroup/Colgroup'
 import Cell from '../cell/Cell'
-import { ColumnProps, ColumnPropTypes } from '../../types/all'
+import { ColumnProps, ColumnPropTypes } from '../../../types/all'
 import { generateColumns } from '../utils/column'
 
 export const HeaderProps = {

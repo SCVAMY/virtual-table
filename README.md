@@ -1,21 +1,20 @@
-# virtual-table based on Vue3 and TypeScript
+# virtual-table
 
-initializing ...
+A virtual-table component based on Vue3 and TypeScript.
 
-## TODO List
+## TODO
 
-### 1 show-overflow-tooltip
+- [x] 重构目录结构
+- [] show-overflow-tooltip
+- [] table tree(多级嵌套，缩进 实现方式)
+- [] 滚动过快白屏问题
+- [] 懒加载行数
+- [] Table Components
 
-### 2 table tree(多级嵌套，缩进 实现方式)
+  - [] FixedTopHeader
+  - [] FixedLeftHeader
+  - [] FIxedRightHeader
+  - [] FixedFooter
+  - [] etc...
 
-### 3 滚动过快白屏问题
-
-### 4 懒加载数
-
-### 5 multyHeader
-
-### 6 合并行/列
-
-### 7 footer
-
-### 8 重构目录结构
+- [] 合并行/列

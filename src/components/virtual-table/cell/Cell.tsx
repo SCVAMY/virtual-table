@@ -1,6 +1,6 @@
 import { defineComponent, PropType } from 'vue'
-import { ColumnPropTypes } from '../../types/all'
-import { TextAlign } from '../../enums'
+import { ColumnPropTypes } from '../../../types/all'
+import { TextAlign } from '../../../enums'
 
 export const CellProps = {
   align: {

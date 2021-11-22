@@ -1,6 +1,6 @@
 import { toRefs, defineComponent, PropType, ref } from 'vue'
-import { ColumnPropTypes } from '../../types/all'
-import { isNumber } from '../../utils/type'
+import { ColumnPropTypes } from '../../../types/all'
+import { isNumber } from '../../../utils/type'
 
 export const ColumnsProps = {
   columns: {
