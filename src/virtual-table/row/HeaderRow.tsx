@@ -10,13 +10,13 @@ export const HeaderProps = {
   headerSlot: Function as PropType<() => any>
 }
 
-export const header = (columns: ColumnProps[]) => {
+export const header = (columns: ColumnProps[], showHeaderSlot: boolean = false) => {
   return (
     <thead>
       <tr>
         {columns.map((i) => {
           const { align, render } = i
-          const cellRender = (render && render()) || i.title
+          const cellRender = (showHeaderSlot && render && render()) || i.title
           return (
             <th class="virtual-table__header__coloumn">
               <Cell {...{ align }}>{cellRender}</Cell>
@@ -36,7 +36,7 @@ export default defineComponent({
   render() {
     const columns = this.getHeaderColumns()
 
-    const Header = header(columns)
+    const Header = header(columns, !!this.headerSlot)
     return (
       <table class="virtual-table__header" style="table-layout: fixed;">
         <Colgroup columns={columns} />

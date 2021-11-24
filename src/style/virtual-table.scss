@@ -32,6 +32,7 @@
     height: calc(100% - 42px);
     width: 100%;
     overflow: auto;
+    overflow-y: overlay;
 
     td {
       border-bottom: $border-default;
@@ -44,7 +45,7 @@
 
     table {
       width: 100%;
-      border-collapse: collapse
+      border-collapse: collapse;
     }
   }
 
@@ -56,7 +57,7 @@
       overflow-wrap: break-word;
     }
     &:hover {
-        background-color: $hilight-color;
+      background-color: $hilight-color;
     }
   }
 

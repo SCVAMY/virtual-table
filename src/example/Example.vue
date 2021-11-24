@@ -1,11 +1,12 @@
 <template>
   <div>
+    <Initial />
     <div class="action-container">
       <input v-model="dataCount" />
       <button @click="updateDataSource">Update</button>
     </div>
     <div style="width: 100%; display: flex; justify-content: center">
-      <VitualTable :data="dataSource" dataKey="name" :height="height" style="width: 80%" :columnHeight="columnHeight" border>
+      <VitualTable :data="dataSource" dataKey="name" :height="height" style="width: 80%" :columnHeight="columnHeight">
         <TableColumn field="name" title="Name" v-slot="{ row }" :align="align">
           <div>{{ row.name }}</div>
         </TableColumn>
@@ -35,9 +36,11 @@
   import VitualTable from '@/virtual-table/VirtualTable.tsx'
   import columns from './colums'
   import TableColumn from './colums.tsx'
+  import Initial from './docs/initial.md'
 
   export default defineComponent({
     name: 'App',
+
     data() {
       return {
         tableColumn: [...columns]
@@ -56,7 +59,8 @@
     components: {
       VueVirtualList,
       VitualTable,
-      TableColumn
+      TableColumn,
+      Initial
     },
     methods: {
       updateDataSource() {
